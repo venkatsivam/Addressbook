@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+ <html>
+ <head>
+   <title>delete record</title>
+ </head>
+ <body>
+   <h3>Remove Contact from the list</h3>
+ <form action="/deleteidrecord" method="post">   
+ <table>
+ {% for row in rows %}
+ <tr><td></td><td><input type="hidden" name="id" value={{row["id"]}}></td></tr>
+ <tr><td>Name</td><td><input type="text" name="name" value={{row["name"]}}></td></tr>
+ <tr><td>Email</td><td><input type="email" name="email" value={{row["email"]}}></td></tr>
+ <tr><td>Address</td><td><input type="text" name="address" value={{row["address"]}}></td></tr>
+ <tr><td>Mobile</td><td><input type="text" name="mobile" value={{row["mobile"]}}></td></tr>
+ <tr><td>Pincode</td><td><input type="text" name="pincode" value={{row["pincode"]}}></td></tr>
+ <tr><td>City</td><td><input type="text" name="city" value={{row["city"]}}></td></tr>
+ <tr><td><input type="submit" value="Submit"></td></tr>
+ {% endfor %} 
+ </table>
+ 
+ </form>
+ </body>
+ </html> 

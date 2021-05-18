@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+ <html>
+ <head>
+   <title>List</title>
+ </head>
+ <body>
+ <h3>Contact  Details</h3>   
+ <table border=5>
+ <thead>
+ <td>ID</td>
+ <td>Name</td>
+ <td>Email</td>   
+ <td>Address</td>
+ <td>Mobile</td>
+ <td>Pincode</td>
+ <td>City</td>
+ <td>Action</td>
+ <td>Action</td>
+ 
+ </thead>
+ {% for row in rows %}
+
+ <tr>
+ <td>{{row["id"]}}</td>
+ <td>{{row["name"]}}</td>
+ <td>{{row["email"]}}</td>
+ <td>{{row["address"]}}</td>
+ <td>{{row["mobile"]}}</td>
+ <td>{{row["pincode"]}}</td>
+ <td>{{row["city"]}}</td>
+ <form action = "/edit/{{row["id"]}}" method="get">
+ <td><input type="submit" value="Edit"></td>  
+ <td><a href="/deleteid/{{row["id"]}}" onclick="return confirm('Are you sure you want to delete this item?');">delete</a></td> 
+ </form>
+ </tr>
+ 
+ {% endfor %}   
+ </table>
+ <br><br>
+ <a href="/">Go back to home page</a>
+ <br><br>
+ <a href="/pdf">Convert into PDF</a>
+ </body>
+ </html> 
+ 

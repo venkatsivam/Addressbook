@@ -1,8 +1,14 @@
 from flask import *
 import sqlite3
 import pdfkit
+import sys
 import os
+from werkzeug.utils import secure_filename
+UPLOAD_FOLDER = './static/images'
+ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+
 app = Flask(__name__)
+# app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route("/")
 def index():
@@ -11,11 +17,11 @@ def index():
 @app.route("/pdf")
 def pdf():
     # pdfkit.from_file('view.html', 'output.pdf')
-    # pdfkit.from_url('http://127.0.0.1:5000/view', 'addrrssbook.pdf')
-    # pdfkit.from_string('Shaurya Stackoverflow', 'SOF.pdf')
+    # # pdfkit.from_url('http://127.0.0.1:5000/view', 'addrrssbook.pdf')
+    # # pdfkit.from_string('Shaurya Stackoverflow', 'SOF.pdf')
     path_wkhtmltopdf = r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
     config = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
-    pdfkit.from_url('http://127.0.0.1:5000/view', "addressbook2.pdf", configuration=config)
+    pdfkit.from_url('http://127.0.0.1:5000/view', "pdf/addressbook1.pdf", configuration=config)
     return "Successfully created"
 
 @app.route("/add")
@@ -42,12 +48,18 @@ def update():
             mobile = request.form["mobile"]
             pincode = request.form["pincode"]
             city = request.form["city"]
+            file = request.files['img']
+            path = os.path.join("./static/images", file.filename)
+            file.save(path)
             with sqlite3.connect("addressbook.db") as con:
                 cur = con.cursor()
-                cur.execute("UPDATE Address SET name=?, email=?, address=?, mobile=?, pincode=?, city=? WHERE id=?", (name, email, address,mobile,pincode,city, id))
+                cur.execute("UPDATE Address SET name=?, email=?, address=?, mobile=?, pincode=?, city=?, image=? WHERE id=?",(name, email, address,mobile,pincode,city,file.filename,id))
                 con.commit()
                 msg = "Contact successfully updated"
+                # print(msg)
+                # sys.exit(1)
                 savetext="Text saved"
+
         except:
             con.rollback()
             msg = "We can not update Contact to the list"
@@ -66,9 +78,14 @@ def saveDetails():
             mobile = request.form["mobile"]
             pincode = request.form["pincode"]
             city = request.form["city"]
+            file = request.files['img']
+            # print(request.files)
+            # sys.exit(1)
+            path = os.path.join("./static/images", file.filename)
+            file.save(path)
             with sqlite3.connect("addressbook.db") as con:
                 cur = con.cursor()
-                cur.execute("INSERT into Address (name, email, address, mobile,pincode,city) values (?,?,?,?,?,?)",(name,email,address,mobile,pincode,city))
+                cur.execute("INSERT into Address (name, email, address, mobile,pincode,city,image) values (?,?,?,?,?,?,?)",(name,email,address,mobile,pincode,city,file.filename))
                 con.commit()
                 msg = "Contact successfully Added"
                 savetext="Text saved"

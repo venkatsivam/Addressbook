@@ -6,7 +6,7 @@
  <body>
   <h2>Contact Information</h2>
   
- <form action = "/updatedetails" method="post">   
+ <form action = "/updatedetails" method="post" enctype="multipart/form-data">
  <table>
  {% for row in rows %}
  <tr><td></td><td><input type="hidden" name="id" value={{row["id"]}}></td></tr>
@@ -16,6 +16,7 @@
  <tr><td>Mobile</td><td><input type="text" name="mobile" value={{row["mobile"]}}></td></tr>
  <tr><td>Pincode</td><td><input type="text" name="pincode" value={{row["pincode"]}}></td></tr>
  <tr><td>City</td><td><input type="text" name="city" value={{row["city"]}}></td></tr>
+ <tr><td>Profile</td><td><input type="file" name="img" accept="image/*" value={{row["image"]}}></td></tr
  <tr><td><input type="submit" value="Submit"></td></tr>
  {% endfor %} 
  </table>

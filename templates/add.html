@@ -5,7 +5,7 @@
  </head>
  <body>
   <h2>Contact Information</h2>
- <form action = "/savedetails" method="post">   
+ <form action = "/savedetails" method="post" enctype="multipart/form-data">   
  <table>
  <tr><td>Name</td><td><input type="text" name="name"></td></tr>
  <tr><td>Email</td><td><input type="email" name="email"></td></tr>
@@ -13,6 +13,7 @@
  <tr><td>Mobile</td><td><input type="text" name="mobile"></td></tr>
  <tr><td>Pincode</td><td><input type="text" name="pincode"></td></tr>
  <tr><td>City</td><td><input type="text" name="city"></td></tr>
+ <tr><td>Profile</td><td><input type="file" name="img" accept="image/*"></td></tr>
  <tr><td><input type="submit" value="Submit"></td></tr>
  </table>
  </form>

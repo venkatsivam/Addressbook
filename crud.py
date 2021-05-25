@@ -22,6 +22,7 @@ def pdf():
     path_wkhtmltopdf = r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
     config = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
     pdfkit.from_url('http://127.0.0.1:5000/view', "pdf/addressbook1.pdf", configuration=config)
+    pdfkit.from_url('http://127.0.0.1:5000/search', "pdf/addressbook5.pdf", configuration=config)
     return "Successfully created"
 
 @app.route("/add")
@@ -96,6 +97,22 @@ def saveDetails():
         finally:
             return render_template("success.html",msg = msg,savevariable=savetext)
             con.close()
+
+@app.route("/search", methods = ["POST"])
+def search():
+    search_result=request.form["search_value"]
+    # sys.exit(1)
+    con = sqlite3.connect("addressbook.db")
+    con.row_factory = sqlite3.Row
+    cur = con.cursor()
+    posts = cur.execute(
+        "SELECT * FROM Address WHERE name LIKE ? OR email LIKE ? OR address LIKE ? OR city LIKE ? OR mobile LIKE ?",
+        ('%' + search_result + '%','%' + search_result + '%','%' + search_result + '%','%' + search_result + '%','%' + search_result + '%'))
+    rows = cur.fetchall()
+    # print(searchrows)
+    # sys.exit(1)
+    return render_template("view.html",rows = rows)
+
 
 @app.route("/view")
 def view():

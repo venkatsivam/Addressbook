@@ -4,23 +4,42 @@
  <title>Add Contact</title>
  </head>
  <body>
-  <h2>Contact Information</h2>
+  <h2 style="background-color: lavender;
+    text-align: center;
+    text-transform: uppercase;
+    font-size:  xx-large;
+    font-family: auto;"> Address Book </h2>
+
+  <div align="center" style="border: groove;
+    padding: 18px; background-color: bisque;">
+  <h2>Edit Contact</h2>
   
  <form action = "/updatedetails" method="post" enctype="multipart/form-data">
  <table>
  {% for row in rows %}
  <tr><td></td><td><input type="hidden" name="id" value={{row["id"]}}></td></tr>
- <tr><td>Name</td><td><input type="text" name="name" value={{row["name"]}}></td></tr>
- <tr><td>Email</td><td><input type="email" name="email" value={{row["email"]}}></td></tr>
- <tr><td>Address</td><td><input type="text" name="address" value={{row["address"]}}></td></tr>
- <tr><td>Mobile</td><td><input type="text" name="mobile" value={{row["mobile"]}}></td></tr>
- <tr><td>Pincode</td><td><input type="text" name="pincode" value={{row["pincode"]}}></td></tr>
- <tr><td>City</td><td><input type="text" name="city" value={{row["city"]}}></td></tr>
- <tr><td>Profile</td><td><input type="file" name="img" accept="image/*" value={{row["image"]}}></td></tr
- <tr><td><input type="submit" value="Submit"></td></tr>
+ <tr><td style="font-size: larger;
+    font-weight: bolder;">Name</td><td><input type="text" name="name" value={{row["name"]}}></td></tr>
+ <tr><td style="font-size: larger;
+    font-weight: bolder;">Email</td><td><input type="email" name="email" value={{row["email"]}}></td></tr>
+ <tr><td style="font-size: larger;
+    font-weight: bolder;">Address</td><td><input type="text" name="address" value={{row["address"]}}></td></tr>
+ <tr><td style="font-size: larger;
+    font-weight: bolder;">Mobile</td><td><input type="text" name="mobile" value={{row["mobile"]}}></td></tr>
+ <tr><td style="font-size: larger;
+    font-weight: bolder;">Pincode</td><td><input type="text" name="pincode" value={{row["pincode"]}}></td></tr>
+ <tr><td style="font-size: larger;
+    font-weight: bolder;">City</td><td><input type="text" name="city" value={{row["city"]}}></td></tr>
+ <tr><td style="font-size: larger;
+    font-weight: bolder;">Profile</td><td><input type="file" name="img" accept="image/*" value={{row["image"]}}></td></tr>
+ <tr><td><input type="submit" value="Submit"  style="border-block: revert;
+    background-color: greenyellow;
+    padding: 5px 10px;
+    font-size: 18px;"></td></tr>
  {% endfor %} 
  </table>
  </form>
+  </div>
  </body>
  </html>
   

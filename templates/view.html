@@ -15,7 +15,7 @@
     padding: -50px; background-color: bisque;">
  <h1>Contact Details</h1>
  <div>
-  <form action = "/search" method="post">
+  <form action = "/search" method="get">
  <input type="search" placeholder="Search" name="search_value" style="border: groove;
     background-color: lavender; padding: 5px 10px;">
  <input type="submit" value="Search" style="border-block: revert;
@@ -62,7 +62,7 @@
  <br><br>
  <a href="/">Go back to home page</a>
  <br><br>
- <a href="/pdf">Convert into PDF</a>
+ <a href="/pdf/{{pdf_url}}/{{search_val}}">Convert into PDF</a>
    </div>
  </body>
  </html> 

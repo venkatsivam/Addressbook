@@ -19,13 +19,13 @@ function validateForm()
     return false;
   }
 
-
   var address = document.forms["addform"]["address"].value;
   if (address == "")
   {
     alert("Address must be filled out");
     return false;
   }
+
 
   var mobile = document.forms["addform"]["mobile"].value;
   if (mobile == "")
@@ -34,19 +34,13 @@ function validateForm()
     return false;
   }
 
+
   var pincode = document.forms["addform"]["pincode"].value;
   if (pincode == "")
   {
     alert("Pincode must be filled out");
     return false;
   }
-  var pat1=/^\d{6}$/;
-  if(!pat1.test(pincode.value))
-{
-alert("Pin code should be 6 digits ");
-pincode.focus();
-return false;
-}
 
   var city = document.forms["addform"]["city"].value;
   if (city == "")
@@ -58,7 +52,7 @@ return false;
   var image = document.forms["addform"]["img"].value;
   if (image == "")
   {
-    alert("Image must be filled out");
+    alert("Please choose any Image to upload");
     return false;
   }
 }
@@ -81,13 +75,13 @@ return false;
     font-weight: bolder;">Name</td><td><input type="text" name="name" style="border: groove;
     background-color: lavender;"></td></tr>
  <tr><td style="font-size: larger;
-    font-weight: bolder;">Email</td><td><input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" style="border: groove;
+    font-weight: bolder;">Email</td><td><input type="email" name="email" style="border: groove;
     background-color: lavender;"></td></tr>
  <tr><td style="font-size: larger;
     font-weight: bolder;">Address</td><td><textarea name="address" rows="4" cols="50" maxlength="250" style="border: groove;
     background-color: lavender;"></textarea></td></tr>
  <tr><td style="font-size: larger;
-    font-weight: bolder;">Mobile</td><td><input type="text" name="mobile" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" style="border: groove;
+    font-weight: bolder;">Mobile</td><td><input type="tel" name="mobile" style="border: groove;
     background-color: lavender;"></td></tr>
  <tr><td style="font-size: larger;
     font-weight: bolder;">Pincode</td><td><input type="text" name="pincode" style="border: groove;
